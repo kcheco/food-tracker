@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XyW-KZ-an5">
-                                <rect key="frame" x="16" y="40" width="343" height="430.5"/>
+                                <rect key="frame" x="16" y="40" width="343" height="550.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvn-0h-DYx">
                                         <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
@@ -55,14 +55,13 @@
                                             <outletCollection property="gestureRecognizers" destination="ZAZ-c6-swp" appends="YES" id="TwU-s5-f2k"/>
                                         </connections>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEk-jS-jZ5" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="440.5" width="200" height="110"/>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="alS-v2-A0H" secondAttribute="trailing" id="sI1-7P-A7d"/>
                                 </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEk-jS-jZ5" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                <rect key="frame" x="16" y="478" width="200" height="110"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

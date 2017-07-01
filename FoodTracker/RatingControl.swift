@@ -17,9 +17,34 @@ class RatingControl: UIStackView {
     */
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupButtons()
     }
 
     required init(coder: NSCoder) {
         super.init(coder: coder)
+        setupButtons()
+    }
+    
+    /*
+     ------------------------------------
+     MARK: Private Methods
+     ------------------------------------
+     */
+    private func setupButtons() {
+        // creates button
+        let button = UIButton()
+        
+        // sets default button background color
+        button.backgroundColor = UIColor.red
+        
+        // disables button auto generated contraints (normalizing). Recommended when creating a view that uses auto layout
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        // activates the buttons height and width constraints
+        button.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 44.0).isActive = true
+        
+        // Adds button to the stack
+        addArrangedSubview(button)
     }
 }
