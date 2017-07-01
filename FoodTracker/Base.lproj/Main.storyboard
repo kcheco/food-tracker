@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XyW-KZ-an5">
-                                <rect key="frame" x="16" y="40" width="343" height="550.5"/>
+                                <rect key="frame" x="16" y="40" width="343" height="484.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvn-0h-DYx">
                                         <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
@@ -56,7 +56,7 @@
                                         </connections>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YEk-jS-jZ5" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="440.5" width="200" height="110"/>
+                                        <rect key="frame" x="0.0" y="440.5" width="252" height="44"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
