@@ -102,6 +102,21 @@ class RatingControl: UIStackView {
      ------------------------------------
      */
     func ratingButtonTapped(button: UIButton) {
-        print("Button pressed!")
+        
+        // Ensures button tapped is within the Rating Buttons array and sets that index value or returns and error if its not found
+        guard let index = ratingButtons.index(of: button) else {
+            fatalError("The button, \(button), is not in the ratingButtons array: \(ratingButtons)")
+        }
+        
+        // Calculate the rating of the selected button
+        let selectedRating = index + 1
+        
+        if selectedRating == rating {
+            // If the selected star represents the current rating, reset the rating to 0.
+            rating = 0
+        } else {
+            // Otherwise set the rating to the selected star
+            rating = selectedRating
+        }
     }
 }
