@@ -17,9 +17,13 @@ class RatingControl: UIStackView {
      ------------------------------------
      */
     private var ratingButtons = [UIButton]()
-    var rating = 0
     
     //property observers
+    var rating = 0 {
+        didSet {
+            updateButtonSelectionStates()
+        }
+    }
     @IBInspectable var starSize: CGSize = CGSize(width: 44.0, height: 44.0) {
         didSet {
             setupButtons()
@@ -94,6 +98,8 @@ class RatingControl: UIStackView {
             // Add the new button to the rating button array
             ratingButtons.append(button)
         }
+        
+        updateButtonSelectionStates()
     }
     
     /*
@@ -117,6 +123,18 @@ class RatingControl: UIStackView {
         } else {
             // Otherwise set the rating to the selected star
             rating = selectedRating
+        }
+    }
+    
+    /*
+     ------------------------------------
+     MARK: Helper
+     ------------------------------------
+     */
+    private func updateButtonSelectionStates() {
+        for (index, button) in ratingButtons.enumerated() {
+            // If the index of a button is less than the rating, that button should be selected.
+            button.isSelected = index < rating
         }
     }
 }
