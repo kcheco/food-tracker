@@ -61,13 +61,22 @@ class RatingControl: UIStackView {
         }
         ratingButtons.removeAll()
         
+        // Load Button Images from Bundler using UIImage class and its initializer
+        let bundle = Bundle(for: type(of: self))
+        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
+        let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedStar = UIImage(named:"highlightedStar", in: bundle, compatibleWith: self.traitCollection)
+        
         // Create 5 buttons (the _ is set since we don't need to know the current index iteration)
         for _ in 0..<starCount {
             // creates a button
             let button = UIButton()
             
-            // sets default button background color
-            button.backgroundColor = UIColor.red
+            // Set the button images
+            button.setImage(emptyStar, for: .normal)
+            button.setImage(filledStar, for: .selected)
+            button.setImage(highlightedStar, for: .highlighted)
+            button.setImage(highlightedStar, for: [.highlighted, .selected])
             
             // disables button auto generated contraints (normalizing). Recommended when creating a view that uses auto layout
             button.translatesAutoresizingMaskIntoConstraints = false
