@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     ------------------------------------
     */
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
 
@@ -41,11 +40,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         textField.resignFirstResponder()
         return true
     }
-    
-    // Once the user finsihes editing the text field, then assign that value to the Meal Name label
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        mealNameLabel.text = textField.text
-    }
+
     
     /*
     ------------------------------------
