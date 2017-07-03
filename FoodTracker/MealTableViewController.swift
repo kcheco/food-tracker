@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import os.log
 
 class MealTableViewController: UITableViewController {
     
     /*
-     ------------------------------------
-     MARK: Properties
-     ------------------------------------
-     */
+    ------------------------------------
+    MARK: Properties
+    ------------------------------------
+    */
     // Sets a new Meal Object within the meal variable
     var meals = [Meal]()
 
@@ -111,37 +112,70 @@ class MealTableViewController: UITableViewController {
     */
 
     /*
-    // MARK: - Navigation
+    ------------------------------------
+    MARK: Navigation
+    ------------------------------------
+    */
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    /*
-     ------------------------------------
-     MARK: Actions
-     ------------------------------------
-     */
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        // Detects if an instance of Meal is being passed through and assigns it to sourceViewController as if it was being referred to as MealViewController
-        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
-            // if a new meal is set, then find the last index in the list of meals and add the new meal to the end of the table view
-            let newIndexPath = IndexPath(row: meals.count, section: 0)
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        
+            // if the user is adding an item, the view remains the same
+            case "AddItem":
+                os_log("Adding a new meal.", log: OSLog.default, type: .debug)
             
-            meals.append(meal)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            // if the user selects a meal from the list, then look up specific Meal item and pass the object to mealView controller
+            case "ShowDetail":
+                guard let mealDetailViewController = segue.destination as? MealViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+            
+                guard let selectedMealCell = sender as? MealTableViewCell else {
+                    fatalError("Unexpected sender: \(String(describing: sender))")
+                }
+            
+                guard let indexPath = tableView.indexPath(for: selectedMealCell) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+            
+                let selectedMeal = meals[indexPath.row]
+                mealDetailViewController.meal = selectedMeal
+            default:
+                fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
     }
     
     /*
-     ------------------------------------
-     MARK: Private Methods
-     ------------------------------------
-     */
+    ------------------------------------
+     MARK: Actions
+    ------------------------------------
+    */
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        // Detects if an instance of Meal is being passed through and assigns it to sourceViewController as if it was being referred to as MealViewController
+        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing meal.
+                meals[selectedIndexPath.row] = meal
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                // if a new meal is set, then find the last index in the list of meals and add the new meal to the end of the table view
+                let newIndexPath = IndexPath(row: meals.count, section: 0)
+                
+                meals.append(meal)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
+    }
+    
+    /*
+    ------------------------------------
+    MARK: Private Methods
+    ------------------------------------
+    */
     // This is considered a seed of a data model
     private func loadSampleMeals() {
         // load the three images that will be used for the sample data
