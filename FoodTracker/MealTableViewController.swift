@@ -21,6 +21,8 @@ class MealTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Use the edit button item provided by the table view controller.
+        navigationItem.leftBarButtonItem = editButtonItem
         
         // Load the sample data.
         loadSampleMeals()
@@ -143,6 +145,7 @@ class MealTableViewController: UITableViewController {
             
                 let selectedMeal = meals[indexPath.row]
                 mealDetailViewController.meal = selectedMeal
+                os_log("Editing a meal", log: OSLog.default, type: .debug)
             default:
                 fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }

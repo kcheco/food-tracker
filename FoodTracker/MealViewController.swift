@@ -99,7 +99,19 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
      */
     // Returns user to MealTableView
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        
+        // if user is in the add meal view and hits cancel, then return to list screen. Otherwise, if user has selected a meal from list and is in edit mode but hits the cancel button then send back to list view.
+        if isPresentingInAddMealMode {
+            dismiss(animated: true, completion: nil)
+        } else if let owningNavigationController = navigationController {
+            // checks the navigation stack and removes the view which then displays the previous screen (edit -> list)
+            owningNavigationController.popViewController(animated: true)
+        } else {
+            // this should never execute unless there is a bug
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
     }
     
     // This method lets you configure a view controller before it's presented.
