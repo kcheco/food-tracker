@@ -39,10 +39,11 @@ class MealTableViewController: UITableViewController {
     /*
     ------------------------------------
     MARK: - Table view data source
+     
+    The following methods come with a TableViewController by default as par of its dataSource and delegate protocols
     ------------------------------------
     */
     
-    // The following methods come with a TableViewController by default as part of its dataSource and delegate protocols
     // Setting this method to 1 allows for this tableView to appear in the view
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
