@@ -120,6 +120,23 @@ class MealTableViewController: UITableViewController {
     }
     */
     
+    
+    /*
+     ------------------------------------
+     MARK: Actions
+     ------------------------------------
+     */
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        // Detects if an instance of Meal is being passed through and assigns it to sourceViewController as if it was being referred to as MealViewController
+        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+            // if a new meal is set, then find the last index in the list of meals and add the new meal to the end of the table view
+            let newIndexPath = IndexPath(row: meals.count, section: 0)
+            
+            meals.append(meal)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+    
     /*
      ------------------------------------
      MARK: Private Methods
