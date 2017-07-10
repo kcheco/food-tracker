@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import Alamofire
 
 class MealTableViewController: UITableViewController {
     
@@ -18,6 +19,7 @@ class MealTableViewController: UITableViewController {
     */
     // Sets a new Meal Object within the meal variable
     var meals = [Meal]()
+    var request: Request?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +75,7 @@ class MealTableViewController: UITableViewController {
         // Configure the cell by attaching the values within the corresponding item in the Meal Object to the views set in MealTableViewCell
         cell.nameLabel.text = meal.name
         cell.photoImageView.image = meal.photo
-        cell.ratingControl.rating = meal.rating
+        cell.ratingControl.rating = meal.rating!
 
         return cell
     }
@@ -178,21 +180,27 @@ class MealTableViewController: UITableViewController {
     */
     // This is considered a seed of a data model
     private func loadSampleMeals() {
+        
         // load the three images that will be used for the sample data
-        let photo1 = UIImage(named: "meal1")
-        let photo2 = UIImage(named: "meal2")
-        let photo3 = UIImage(named: "meal3")
+        //let photo1 = UIImage(named: "meal1")
+        //let photo2 = UIImage(named: "meal2")
+        //let photo3 = UIImage(named: "meal3")
         
-        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4) else {
-            fatalError("Unable to initiate meal1")
-        }
-        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5) else {
-            fatalError("Unable to initiate meal2")
-        }
-        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3) else {
-            fatalError("Unable to initiate meal3")
-        }
+        //guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4) else {
+        //    fatalError("Unable to initiate meal1")
+        //}
+        //guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5) else {
+        //    fatalError("Unable to initiate meal2")
+        //}
+        //guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3) else {
+        //    fatalError("Unable to initiate meal3")
+        //}
         
-        meals += [meal1, meal2, meal3]
+        //meals += [meal1, meal2, meal3]
+        
+        request = APIManager.sharedInstance.getMeals{ [unowned self] meals in
+            self.request = nil
+            self.meals = meals
+        }
     }
 }

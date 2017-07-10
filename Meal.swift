@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class Meal {
     
@@ -15,32 +16,40 @@ class Meal {
      MARK: Properties
      ------------------------------------
      */
-    var name: String
+    var id: Int?
+    var name: String?
     var photo: UIImage?
-    var rating: Int
+    var rating: Int?
     
     /*
      ------------------------------------
      MARK: Initializer
      ------------------------------------
      */
-    init?(name: String, photo: UIImage?, rating: Int) {
+    init(json: JSONDictionary) {
         
-        // Validation rules
-        // The name must not be empty
-        guard !name.isEmpty else {
-            return nil
+        if let id = json["id"] as? Int {
+            self.id = id
         }
-        // The rating must be between 0 and 5 inclusively
-        guard (rating >= 0) && (rating <= 5) else {
-            return nil
+        if let name = json["name"] as? String {
+            self.name = name
         }
+        if let photo = json["photo"] as? UIImage {
+            self.photo = photo
+        }
+        if let rating = json["rating"] as? Int {
+            self.rating = rating
+        }
+    }
+    
+    func toJsonDictionary() -> JSONDictionary {
+        var dict: JSONDictionary = [:]
         
+        if let id = id { dict["id"] = id as Int as AnyObject }
+        if let name = name { dict["name"] = name as AnyObject }
+        if let photo = photo { dict["photo"] = photo as UIImage }
+        if let rating = rating { dict["rating"] = rating as AnyObject}
         
-        
-        // Initialize stored properties
-        self.name = name
-        self.photo = photo
-        self.rating = rating
+        return dict
     }
 }

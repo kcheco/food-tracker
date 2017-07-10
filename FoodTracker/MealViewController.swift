@@ -34,7 +34,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             navigationItem.title = meal.name
             nameTextField.text   = meal.name
             photoImageView.image = meal.photo
-            ratingControl.rating = meal.rating
+            ratingControl.rating = meal.rating!
         }
         
         // Enable the Save button only if the text field has a valid Meal name.
@@ -129,7 +129,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         let rating = ratingControl.rating
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
-        meal = Meal(name: name, photo: photo, rating: rating)
+        meal = Meal(json: ["name": name as AnyObject, "photo": photo!, "rating": rating as AnyObject])
     }
     
     /*
