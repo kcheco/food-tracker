@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FoodTracker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4F47296D13EF0F37AB7908AE0A5A2202</key>
+		<key>1A89F20D7BB61BD763F2572C3ED02FB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9502FB01641FBABB78522037E882757B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C8FB10EC9890057E39BD3AE8A790C53B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA2E9EC37B705E70C21FEF57870CF686</key>
+		<key>ED1BE4AC39C3093FEBA9DAFB93FA99E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
