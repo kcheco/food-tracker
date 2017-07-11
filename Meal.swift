@@ -27,7 +27,7 @@ class Meal {
      ------------------------------------
      */
     init(json: JSONDictionary) {
-        
+
         if let id = json["id"] as? Int {
             self.id = id
         }

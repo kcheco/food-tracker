@@ -14,6 +14,8 @@ public class APIManager {
     public static let sharedInstance: APIManager = APIManager()
     
     let manager = SessionManager()
+    var meal: Meal!
+    var meals = [Meal]()
     
     init() {
     }
@@ -22,21 +24,24 @@ public class APIManager {
         let router = MealRouter(endpoint: .GetMeals)
         
         return manager.request(router)
-            .validate()
             .responseJSON{ response in
                 if let error = response.error {
                     print(error)
                     return
                 }
                 
-                let mealJson = ((response.value as! JSONDictionary)["meals"] as? [JSONDictionary])!
-                
-                var objs: [Meal] = []
-                
-                for json in mealJson {
-                    objs += [Meal(json: json)]
+                if let dict = response.value as? JSONDictionary {
+                    
+                    if let meals = dict["meals"] as? [JSONDictionary] {
+                        
+                        for obj in meals {
+                            let meal = Meal(json: obj)
+                            self.meals.append(meal)
+                            print(obj)
+                        }
+                    }
                 }
-                completion(objs)
+                completion(self.meals)
             }
     }
 }
